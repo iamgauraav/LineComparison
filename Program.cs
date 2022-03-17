@@ -1,38 +1,51 @@
 ﻿using System;
 
 namespace LineComparison
-{
+{/// <summary>
+/// UC-2 For calculating equality of two lines
+/// </summary>
     class Program
-    {/// <summary>
-     /// UC1 For calculating length of two lines 
-     /// </summary>
-        static void Main(string[] args)
-        {
-            
-            Console.WriteLine("Please enter x1 and y1 coordinates: ");
-            var x1 = Convert.ToDouble(Console.ReadLine());
-            var y1 = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Please enter x2 and y2 coordinates: ");
-            var x2 = Convert.ToDouble(Console.ReadLine());
-            var y2 = Convert.ToDouble(Console.ReadLine());
-
-            var finalResult = Distance(x1, x2, y1, y2);
-            //Initializing by calling final result 
-            Console.WriteLine("Distance between coordinates {0},{1} and {2},{3} is {4:F}", x1, y1, x2, y2, finalResult);
-            Console.ReadLine();
-
-
-        }
-         static double Distance(double x1, double x2, double y1, double y2)
+    {
+        public static double distance(double x1, double x2, double y1, double y2)
         {
             //Using Math.pow for power,and squrt for squareroot 
-            var temp1 = Math.Pow((x2 - x1), 2);
-            var temp2 = Math.Pow((y2 - y1), 2);
-            var result = Math.Sqrt(temp1 + temp2);
-
+            var lineLength = Math.Pow((x2 - x1), 2);
+            var lineLength1 = Math.Pow((y2 - y1), 2);
+            var result = Math.Sqrt(lineLength + lineLength1);
 
             return result;
         }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter x1,y1,x2,y2 coordinates for line 1: ");
+            var x1 = Convert.ToDouble(Console.ReadLine());
+            var y1 = Convert.ToDouble(Console.ReadLine());
+            var x2 = Convert.ToDouble(Console.ReadLine());
+            var y2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Please enter a1,b1,a2,b2 coordinates for line 2: ");
+            double a1 = Convert.ToDouble(Console.ReadLine());
+            var b1 = Convert.ToDouble(Console.ReadLine());
+            var a2 = Convert.ToDouble(Console.ReadLine());
+            var b2 = Convert.ToDouble(Console.ReadLine());
+
+            //initializing two lines (line1,lin2) by calling distance method 
+            var line1 = Program.distance(x1, y1, x2, y2);
+            var line2 = Program.distance(a1, b1, a2, b2);
+            Console.WriteLine(line1);
+            Console.WriteLine(line2);
+
+            if (double.Equals(line1, line2))
+            {
+                Console.WriteLine("{0} is equal to {1}", line1, line2);
+            }
+            else
+            {
+                Console.WriteLine("{0} is not equal to {1}", line1, line2);
+            }
+            Console.ReadLine();
+        }
+
     }
 }
+
